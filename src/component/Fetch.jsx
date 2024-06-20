@@ -4,7 +4,7 @@ export default class Fetch extends Component{
     constructor(props){
         super(props)
 
-        this.state=({data:[],error:'',isData:false})
+        this.state=({data:[],error:'',isData:false,})
 
     }
 
@@ -13,11 +13,34 @@ export default class Fetch extends Component{
         .then((res)=>res.json())
         .then((json)=>{
             this.setState({data:json,isData:true})
+            console.log("I am json",json);
+            console.log(typeof(this.state.data),"data",this.state.data)
             console.log(this.state.data);
         })
         .catch((error)=>{
            this.setState({error:error.message})
         })
+    }
+
+        setUpdate = ()=>{
+            
+            const updateData = {
+                food_name: "Dosa",
+                quantity_half: 3,
+                quantity_full: 4,
+                menu_id: 1
+            };
+    fetch("https://renderhm.onrender.com/food_items/4", {
+
+
+        method: 'PUT',           
+        body: JSON.stringify(updateData),
+        headers: {
+             'Accept': 'application/json',
+    'Content-Type': 'application/json'
+        }
+        })
+        
     }
 
     setData = ()=>{
@@ -53,6 +76,7 @@ export default class Fetch extends Component{
         return(
             <>
             <button onClick={this.setData}>Click</button>
+            <button onClick={this.setUpdate}>Updatd</button>
             <table>
                 <thead>
                     <tr>
@@ -61,13 +85,13 @@ export default class Fetch extends Component{
                         <th>Full Quantity</th>
                         <th>Food Name</th>
                         <th>Menu Id</th>
-                    </tr>
+                    </tr>   
                 </thead>
 
                 <tbody>
                     {
                         data && data.map((item,index)=>{
-                            return <tr key={index+1}>
+                            return <tr key={index}>
                                 <td>{item.id}</td>
                                 <td>{item.quantity_half}</td>
                                 <td>{item.quantity_full}</td>

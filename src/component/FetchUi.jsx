@@ -15,7 +15,7 @@ export default class FetchUi extends Component{
         .then((json)=>{
             // console.log(json)
             this.setState({data:json})
-            console.log(this.state.data);
+            console.log("menus",json);
         })
         .catch((error)=>{
             console.log(error)
