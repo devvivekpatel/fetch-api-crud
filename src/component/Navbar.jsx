@@ -17,6 +17,10 @@ export default class Navbar extends Component{
         <Link to="/ui" className='nav-link active' style={{color:'white',listStyle:'none'}}>UI</Link>
         </li>
 
+        <li class="nav-item" style={{listStyle:'none',color:'white',fontSize:'20px'}}>
+        <Link to="/crud" className='nav-link active' style={{color:'white',listStyle:'none'}}>Crud</Link>
+        </li>
+
         </div>
         </>)
     }
